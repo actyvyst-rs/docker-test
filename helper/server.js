@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 
 app.get('/data', (req, res) => {
   res.json({
-    data: [{ key: 1, value: 5 }, { key: 2, value: 7 }, { key: 3, value: 9 }]
+    data: [{ key: 1, value: 5 }, { key: 2, value: 7 }, { key: 3, value: 10 }]
   });
 });
 

@@ -23,3 +23,4 @@ app.listen(3000, () => {
 });
 
 module.exports.app = app;
+module.exports.multiplyTest = (a, b) => a * b;
