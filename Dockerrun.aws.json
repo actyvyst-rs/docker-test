@@ -1,0 +1,24 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "gateway",
+      "image": "actyvyst/deploy_gateway",
+      "hostname": "gateway",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 3000
+        }
+      ],
+      "links": ["helper"]
+    },
+    {
+      "name": "helper",
+      "image": "actyvyst/deploy_helper",
+      "hostname": "helper",
+      "essential": false
+    }
+  ]
+}
