@@ -2,9 +2,10 @@ sudo: required
 language: generic
 services:
   - docker
-after_success:
+install:
   - docker build -t actyvyst/docker-test-gateway ./gateway
   - docker build -t actyvyst/docker-test-helper ./helper
+after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push actyvyst/docker-test-gateway
   - docker push actyvyst/docker-test-helper
