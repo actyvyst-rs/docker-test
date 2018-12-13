@@ -1,37 +1,13 @@
 pipelines:
   default:
     - step:
-      name: Build Docker containers
-      script:
-        - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-        - docker build -t actyvyst/deploy_gateway:$BITBUCKET_COMMIT ./gateway
-        - docker build -t actyvyst/deploy_helper:$BITBUCKET_COMMIT ./helper
-        - docker push actyvyst/deploy_gateway:$BITBUCKET_COMMIT
-        - docker push actyvyst/deploy_helper:$BITBUCKET_COMMIT
-    - step:
-      # set AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY as environment variables
-      name: Deploy gateway to S3
-      deployment: production # set to test, staging or production
-      # trigger: manual  # uncomment to have a manual step
-      image:
-        name: actyvyst/deploy_gateway
-        username: $DOCKER_USERNAME
-        password: $DOCKER_PASSWORD
-        email: $DOCKER_EMAIL
-      script:
-        - aws s3 sync --delete . s3://elasticbeanstalk-eu-central-1-899292395498
-    - step:
-      # set AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY as environment variables
-      name: Deploy helper to S3
-      deployment: production # set to test, staging or production
-      # trigger: manual  # uncomment to have a manual step
-      image:
-        name: actyvyst/deploy_helper
-        username: $DOCKER_USERNAME
-        password: $DOCKER_PASSWORD
-        email: $DOCKER_EMAIL
-      script:
-        - aws s3 sync --delete . s3://elasticbeanstalk-eu-central-1-899292395498
+        name: Build Docker containers
+        script:
+          - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          - docker build -t actyvyst/deploy_gateway:$BITBUCKET_COMMIT ./gateway
+          - docker build -t actyvyst/deploy_helper:$BITBUCKET_COMMIT ./helper
+          - docker push actyvyst/deploy_gateway:$BITBUCKET_COMMIT
+          - docker push actyvyst/deploy_helper:$BITBUCKET_COMMIT
 
 options:
   docker: true
