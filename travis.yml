@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+after_build:
+  - docker build -t docker-test-gateway ./gateway
+  - docker build -t docker-test-helper ./helper
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push docker-test-gateway
+  - docker push docker-test-helper
