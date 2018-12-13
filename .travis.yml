@@ -9,3 +9,15 @@ after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push actyvyst/docker-test-gateway
   - docker push actyvyst/docker-test-helper
+deploy:
+  provider: elasticbeanstalk
+  region: eu-central-1
+  app: actyvyst-deployment-pipe
+  env: ActyvystDeploymentPipe-env
+  bucket_name: elasticbeanstalk-eu-central-1-899292395498
+  bucket_path: docker-test
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
