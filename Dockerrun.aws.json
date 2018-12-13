@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "gateway",
-      "image": "actyvyst/deploy_gateway",
+      "image": "actyvyst/docker-test-gateway",
       "hostname": "gateway",
       "essential": true,
       "memory": 128,
@@ -17,7 +17,7 @@
     },
     {
       "name": "helper",
-      "image": "actyvyst/deploy_helper",
+      "image": "actyvyst/docker-test-helper",
       "hostname": "helper",
       "essential": false,
       "memory": 128
