@@ -6,6 +6,7 @@
       "image": "actyvyst/deploy_gateway",
       "hostname": "gateway",
       "essential": true,
+      "memory": 128,
       "portMappings": [
         {
           "hostPort": 80,
@@ -18,7 +19,8 @@
       "name": "helper",
       "image": "actyvyst/deploy_helper",
       "hostname": "helper",
-      "essential": false
+      "essential": false,
+      "memory": 128
     }
   ]
 }
